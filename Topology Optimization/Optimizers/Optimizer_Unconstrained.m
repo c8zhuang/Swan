@@ -13,7 +13,7 @@ classdef Optimizer_Unconstrained < Optimizer
     methods
         function obj = Optimizer_Unconstrained(settings,epsilon)
             obj@Optimizer(settings);
-            obj.line_search = LineSearch.create(settings,epsilon);
+            obj.line_search = LineSearch.create(settings.line_search_settings,epsilon);
             obj.scalar_product = ScalarProduct(settings.filename,epsilon);
         end
         

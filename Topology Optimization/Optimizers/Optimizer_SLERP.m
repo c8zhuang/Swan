@@ -21,8 +21,9 @@ classdef Optimizer_SLERP < Optimizer_Unconstrained
     end
     
     methods (Access = public)
-        function obj = Optimizer_SLERP(settings,epsilon)
-            obj@Optimizer_Unconstrained(settings,epsilon);
+        function obj = Optimizer_SLERP(custom_settings)
+            settings=DS_Optimizer_SLERP().CompareAndAssignDefaults(custom_settings);
+            obj@Optimizer_Unconstrained(settings);
             obj.max_constr_change = +Inf;
             obj.nconstr = settings.nconstr;
         end

@@ -22,9 +22,35 @@ classdef TopOpt_Problem < handle
             settings.pdim = obj.mesh.pdim;
             obj.settings = settings;
             obj.incremental_scheme = Incremental_Scheme(settings,obj.mesh);
+            
+            %OPTIMZER_SETTINGS%
+            
+            settings.opt_settings.nconstr=settings.nconstr;
+            settings.opt_settings.target_parameters=settings.target_parameters;
+            settings.opt_settings.constraint_case=settings.constraint_case;
+            settings.opt_settings.line_search=settings.line_search;
+            settings.opt_settings.optimizer=settings.optimizer;
+            settings.opt_settings.filename=settings.filename;
+            settings.opt_settings.case_file=settings.case_file;
+            settings.opt_settings.maxiter=settings.maxiter;
+            settings.opt_settings.printing=settings.printing;
+            settings.opt_settings.printMode=settings.printMode;
+            settings.opt_settings.plotting=settings.plotting;
+            
+            %MOINTORING SETTINGS (INSIDE OPTIMIZER)%
+            settings.opt_settings.mon_settings.monitoring_interval=settings.monitoring_interval;
+            settings.opt_settings.mon_settings.monitoring=settings.monitoring;
+            settings.opt_settings.mon_settings.case_file=settings.case_file;
+            settings.opt_settings.mon_settings.cost=settings.cost;
+            settings.opt_settings.mon_settings.constraint=settings.constraint;
+            settings.opt_settings.mon_settings.optimizer=settings.optimizer;
+            settings.opt_settings.mon_settings.weights=settings.weights;
+            settings.opt_settings.mon_settings.pdim=settings.pdim;
+            settings.opt_settings.mon_settings.showBC=settings.showBC;
+            
             switch obj.settings.optimizer
                 case 'SLERP'
-                    obj.optimizer = Optimizer_AugLag(settings,obj.mesh,Optimizer_SLERP(settings,obj.incremental_scheme.epsilon));
+                    obj.optimizer = Optimizer_AugLag(settings.opt_settings,obj.mesh,Optimizer_SLERP(settings.opt_settings));
                 case 'HAMILTON-JACOBI'
                     obj.optimizer = Optimizer_AugLag(settings,obj.mesh,Optimizer_HJ(settings,obj.incremental_scheme.epsilon,obj.mesh.computeMeanCellSize));
                 case 'PROJECTED GRADIENT'

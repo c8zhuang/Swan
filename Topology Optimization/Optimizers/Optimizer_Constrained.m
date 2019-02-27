@@ -25,7 +25,7 @@ classdef Optimizer_Constrained < Optimizer
         function obj = Optimizer_Constrained(settings,mesh,showOptParams)
             obj@Optimizer(settings);
             obj.init(settings,mesh);
-            obj.monitor = MonitoringDocker(showOptParams,settings.plotting,settings,mesh);
+            obj.monitor = MonitoringDocker(showOptParams,settings.plotting,settings.mon_settings,mesh);
             %                         obj.monitoring = Monitoring.create(settings,mesh,showOptParams,settings.plotting);
         end
         

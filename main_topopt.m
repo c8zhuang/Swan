@@ -91,6 +91,8 @@ for icases=1:size(filenames,1)
     clearvars -except filenames icases;
     close all;
     settings = Settings(filenames{icases});
+%     settings.printing=true
+    settings.maxiter=4;
     
     %     try
     test = TopOpt_Problem(settings);

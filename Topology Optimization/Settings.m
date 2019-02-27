@@ -12,6 +12,7 @@ classdef Settings
         constraint_case = 'EQUALITY'
         HJiter0 
         e2 
+        opt_settings
     end
     
     properties %target parameters

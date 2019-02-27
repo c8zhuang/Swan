@@ -7,7 +7,7 @@ classdef Optimizer_AugLag < Optimizer_Constrained
     
     methods
         function obj = Optimizer_AugLag(settings,mesh,optimizer_unconstr)
-            obj@Optimizer_Constrained(settings,mesh,settings.monitoring);
+            obj@Optimizer_Constrained(settings,mesh,settings.mon_settings.monitoring);
             obj.objfunc = Objective_Function_AugLag(settings);
             obj.optimizer_unconstr = optimizer_unconstr;
         end
